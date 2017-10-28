@@ -67,18 +67,25 @@ void setup() {
 		{
 			break;
 		}
+		if (avilable_stop_byte()) {
+			servoBack.write(160);//сброс шайбы
+			delay(500);
+			MotorRight(0);
+			MotorLeft(0);
+			while (1);
+		}
 	//	Serial.println(Adps_Color());
 	}
 	//Serial.println(millis()-lastMilis);
 	//Serial.println(Adps_Color());
 	MotorRight(235);
 	MotorLeft(255);
-	delay(1400);
+	deley_stop_btn(1400);
 	MotorRight(0);
 	MotorLeft(0);
 	MotorRight(190);
 	MotorLeft(210);
-	delay(1300);
+	deley_stop_btn(1300);
 	if (mode == 2) {
 		servoStop.write(70);//stopeэ
 	}
@@ -92,25 +99,25 @@ void setup() {
 	if (mode == 2) {
 		servoStop.write(120);//поднятие заграждения
 	}
-	delay(60);
+	deley_stop_btn(60);
 	servoBack.write(160);//сброс шайбы
-	delay(500);
+	deley_stop_btn(500);
 	if (mode == 2) {
-		delay(300);
+		deley_stop_btn(300);
 		servoStop.write(70);//stopeэ
-		delay(1000);
+		deley_stop_btn(1000);
 	}
 	if (mode == 1) {
 		MotorRight(200);
 		MotorLeft(200);
-		delay(750);
+		deley_stop_btn(750);
 		servoStop.write(70);//stopeэ
 		MotorRight(0);
 		MotorLeft(0);
-		delay(300);
+		deley_stop_btn(300);
 		MotorRight(-200);
 		MotorLeft(-200);
-		delay(1000);
+		deley_stop_btn(1000);
 	}
 
 	MotorRight(0);

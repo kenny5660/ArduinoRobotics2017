@@ -4,7 +4,7 @@ iarduino_RF433_Receiver    radioRX(2);
 
 #define STOP_BYTE 0xFE
 //#define STOP_BYTE 0xF5
-
+unsigned long lastMilisDel;
 uint8_t writebuff = STOP_BYTE;
 void reciver_init(){
 	//radioTX.begin(1000);                                  // Инициируем работу передатчика FS1000A на скорости 1 кбит/сек
@@ -37,4 +37,23 @@ char avilable_stop_byte(){
 void send_stop_byte() {
 	Serial.println("RADIO SENDED");
 	//radioTX.write(&writebuff, 1);
+}
+
+void deley_stop_btn(int mil){
+	lastMilisDel = millis();
+	while (true)
+	{
+		if ((millis() - lastMilis)>7400)
+		{
+			break;
+		}
+		if (avilable_stop_byte()) {
+			servoBack.write(160);//сброс шайбы
+			delay(500);
+			MotorRight(0);
+			MotorLeft(0);
+			while (1);
+		}
+	}
+	
 }
