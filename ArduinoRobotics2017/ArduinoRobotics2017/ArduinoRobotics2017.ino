@@ -18,11 +18,12 @@
 #define D 2
 int  v = 255;
 Servo servoBack;
+Servo servoStop;
 unsigned long lastMilis = 0;
 int mode = 0;
 void setup() {
 	Serial.begin(9600);
-	millis();
+	
 	pinMode(13, OUTPUT);
 	pinMode(LLINESEN, INPUT);
 	pinMode(RLINESEN, INPUT);
@@ -33,6 +34,8 @@ void setup() {
 	reciver_init();
 	MotorRight(0);
 	MotorLeft(0);
+	servoStop.attach(3);
+	servoStop.write(120);
 	servoBack.attach(10);
 	servoBack.write(50);
 //	servoBack.write(150);//сброс шайбы
@@ -41,7 +44,7 @@ void setup() {
 		Serial.print(analogRead(LLINESEN));
 		Serial.print("\t RLINESEN = ");
 		Serial.println(analogRead(RLINESEN));*/
-		Adps_Debug();
+	//	Adps_Debug();
 		if (digitalRead(BUT1) == 0) {
 			mode = 1;
 			break;
@@ -53,7 +56,8 @@ void setup() {
 		}
    }
 //	servoBack.write(150);//сброс шайбы
-//	return;
+
+
 	lastMilis = millis();
 	//while (Adps_Color() != 3)//зеленый
 	while (true)
@@ -67,23 +71,48 @@ void setup() {
 	}
 	//Serial.println(millis()-lastMilis);
 	//Serial.println(Adps_Color());
-	MotorRight(245);
+	MotorRight(235);
 	MotorLeft(255);
 	delay(1400);
 	MotorRight(0);
 	MotorLeft(0);
 	MotorRight(190);
-	MotorLeft(190);
-	delay(500);
-	while (Adps_Color() != 2)//красный
-	{
-		MotorRight(255);
-		MotorLeft(255);
+	MotorLeft(210);
+	delay(1300);
+	if (mode == 2) {
+		servoStop.write(70);//stopeэ
 	}
 
-	delay(70);
+
+	while (Adps_Color() != 2)//красный
+	{
+		MotorRight(245);
+		MotorLeft(255);
+	}
+	if (mode == 2) {
+		servoStop.write(120);//поднятие заграждения
+	}
+	delay(60);
 	servoBack.write(160);//сброс шайбы
 	delay(500);
+	if (mode == 2) {
+		delay(300);
+		servoStop.write(70);//stopeэ
+		delay(1000);
+	}
+	if (mode == 1) {
+		MotorRight(200);
+		MotorLeft(200);
+		delay(750);
+		servoStop.write(70);//stopeэ
+		MotorRight(0);
+		MotorLeft(0);
+		delay(300);
+		MotorRight(-200);
+		MotorLeft(-200);
+		delay(1000);
+	}
+
 	MotorRight(0);
 	MotorLeft(0);
 
