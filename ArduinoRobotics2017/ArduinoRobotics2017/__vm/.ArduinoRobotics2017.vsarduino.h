@@ -77,6 +77,7 @@ typedef void *__builtin_va_list;
 #define pgm_read_ptr(address_short)   short()
 
 #include "ArduinoRobotics2017.ino"
-#include "Source.ino"
+#include "Color.ino"
+#include "motors.ino"
 #endif
 #endif

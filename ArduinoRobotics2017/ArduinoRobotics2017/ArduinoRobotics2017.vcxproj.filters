@@ -23,7 +23,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.ino">
+    <ClCompile Include="motors.ino">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.ino">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
