@@ -7,7 +7,7 @@
 int Lsen = 0;
 int Rsen = 0;
 int u, uOld, er, erOld = 0;
-int  v = 240;
+int  v = 255;
 void MotorInit() {
 	pinMode(Rpwm, OUTPUT);
 	pinMode(Lpwm, OUTPUT);
@@ -66,8 +66,8 @@ void black_line(float p, float i, float d) {
 	Rsen = analogRead(RLINESEN);
 	er = Rsen - Lsen;
 	u = p*er + i*(er + uOld) + d*(er - erOld);
-	MotorLeft(v + (int)u);
-	MotorRight(v - (int)u);
+	MotorLeft(v - (int)u);
+	MotorRight(v + (int)u);
 	//	Serial.println(u);
 	erOld = er;
 	uOld = u;
