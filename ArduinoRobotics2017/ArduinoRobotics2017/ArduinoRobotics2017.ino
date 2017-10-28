@@ -3,6 +3,8 @@
  Created:	28.10.2017 9:18:31
  Author:	misha
 */
+#include <iarduino_RF433_Transmitter.h>
+#include <iarduino_RF433_Receiver.h>
 #include <Servo.h>
 #include <Wire.h>
 #include <SparkFun_APDS9960.h>
@@ -11,9 +13,9 @@
 #define BUT1 A1
 #define BUT2 A0
 // the setup function runs once when you press reset or power the board
-#define P   0.3 
+#define P   0.25 
 #define I 0     
-#define D 40 
+#define D 1
 Servo servoBack;
 int mode = 0;
 void setup() {
@@ -32,6 +34,11 @@ void setup() {
 	servoBack.write(50);
 //	servoBack.write(150);//סבנמס ראיבû
 	while (1) {
+	/*	Serial.print("LLINESEN = ");
+		Serial.print(analogRead(LLINESEN));
+		Serial.print("\t RLINESEN = ");
+		Serial.println(analogRead(RLINESEN));*/
+	//	Adps_Debug();
 		if (digitalRead(BUT1) == 0) {
 			mode = 1;
 			break;
@@ -42,11 +49,23 @@ void setup() {
 			break;
 		}
    }
+	//while (Adps_Color() != 4)
+	//{
+	///*	MotorRight(255);
+	//	MotorLeft(255);*/
+	//	black_line(P, I, D);
+	////	Serial.println(Adps_Color());
+	//}
+	Serial.println(Adps_Color());
+	MotorRight(0);
+	MotorLeft(0);
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-
+	send_stop_byte();
+	avilable_stop_byte();
+	delay(500);
 		
 
 	//black_line(P, I, D);

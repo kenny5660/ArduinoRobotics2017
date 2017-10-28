@@ -19,7 +19,7 @@ void Adps_init() {
 	}
 }
 
-void Adps_Debug() {
+int Adps_Debug() {
 	digitalWrite(13, 1);
 	delay(500);
 	if (!apds.readAmbientLight(ambient_light) ||
@@ -37,15 +37,37 @@ void Adps_Debug() {
 		Serial.print(cG);
 		Serial.print(" Blue: ");
 		Serial.println(cB);
+		if (cG > 600 & cR > 400 & cB <1000) {//желтый
+											Serial.println("YELLOW");
+			return  1;
+
+		}
+		if (cR > 350 & cG < 300 & cB < 420) {//красный
+											 Serial.println("RED");
+			return  2;
+		}
+		if (cR < 380 & cG > 500 & cB < 700) {//зеленый
+											 Serial.println("GREEN");
+			return  3;
+		}
+		if (ambient_light<9000 & cR < 250 & cG < 300 & cB >400) {//синий
+											Serial.println("BLUE");
+			return  4;
+		}
+		if (ambient_light>1800 & cR > 500 & cG > 700 & cB > 1000) {//белый
+																   Serial.println("WHITE");
+			return  5;
+		}
+		if (ambient_light < 800 & cR < 200 & cG < 300 & cB < 400) {//черный
+																 Serial.println("BLACK");
+			return  6;
+		}
+		return  7;
+
 	}
-	digitalWrite(13, 0);
-	delay(500);
 }
 
 int Adps_Color() {
-
-	digitalWrite(13, 1);
-	delay(500);
 	if (!apds.readAmbientLight(ambient_light) ||
 		!apds.readRedLight(cR) ||
 		!apds.readGreenLight(cG) ||
@@ -53,37 +75,23 @@ int Adps_Color() {
 		Serial.println("Error reading light values");
 	}
 	else {
-		Serial.print("Ambient: ");
-		Serial.print(ambient_light);
-		Serial.print(" Red: ");
-		Serial.print(cR);
-		Serial.print(" Green: ");
-		Serial.print(cG);
-		Serial.print(" Blue: ");
-		Serial.println(cB);
-			if (cG > 1500 & cR > 1500 & cB < 1500) {//желтый
-				Serial.println("YELLOW");
+			if (cG > 600 & cR > 400 & cB < 1000 ) {//желтый
 				return  1;
 				
 			}
-			if (cR > 1200 & cG < 1000 & cB < 1000) {//красный
-				Serial.println("RED");
+			if (cR > 350 & cG < 300 & cB < 420) {//красный
 				return  2;
 			}
-			if (cR < 1100 & cG > 1100 & cB < 1100) {//зеленый
-				Serial.println("GREEN");
+			if (cR < 380 & cG > 500 & cB < 700) {//зеленый
 				return  3;
 			}
-			if (cR< 800 & cG < 800 & cB >800) {//синий
-			   	Serial.println("BLUE");
+			if (ambient_light<9000 & cR < 250 & cG < 300 & cB >400) {//синий
 				return  4;
 			}
-			if (cR>2000 & cG > 2000 & cB >2000) {//белый
-				Serial.println("WHITE");
+			if (ambient_light>1800 & cR > 500 & cG > 700 & cB > 1000) {//белый
 				return  5;
 			}
-			if (cR<900 & cG < 900 & cB < 900) {//черный
-				Serial.println("BLACK");
+			if (ambient_light < 800 & cR < 200 & cG < 300 & cB < 400) {//черный
 				return  6;
 			}
 			return  7;

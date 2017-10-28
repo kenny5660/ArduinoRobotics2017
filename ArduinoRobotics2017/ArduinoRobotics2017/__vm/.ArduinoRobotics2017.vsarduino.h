@@ -78,6 +78,7 @@ typedef void *__builtin_va_list;
 
 #include "ArduinoRobotics2017.ino"
 #include "Color.ino"
+#include "Reciver.ino"
 #include "motors.ino"
 #endif
 #endif

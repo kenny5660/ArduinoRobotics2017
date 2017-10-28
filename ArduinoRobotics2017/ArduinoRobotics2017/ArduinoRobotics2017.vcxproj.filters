@@ -16,6 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ArduinoRobotics2017.ino" />
+    <None Include="Reciver.ino">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.ArduinoRobotics2017.vsarduino.h">
