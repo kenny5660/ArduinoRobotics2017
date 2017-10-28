@@ -28,6 +28,7 @@ void setup() {
 	pinMode(BUT2, INPUT_PULLUP);
 	MotorInit();//инцилизация моторов
 	Adps_init();//дачик цвета
+	reciver_init();
 	MotorRight(0);
 	MotorLeft(0);
 	servoBack.attach(10);
@@ -49,24 +50,25 @@ void setup() {
 			break;
 		}
    }
-	//while (Adps_Color() != 4)
-	//{
-	///*	MotorRight(255);
-	//	MotorLeft(255);*/
-	//	black_line(P, I, D);
-	////	Serial.println(Adps_Color());
-	//}
+	while (Adps_Color() != 4)//синий
+	{
+		black_line(P, I, D);
+	//	Serial.println(Adps_Color());
+	}
 	Serial.println(Adps_Color());
+	while (Adps_Color() != 2)//красный
+	{
+		MotorRight(255);
+		MotorLeft(255);
+	}
 	MotorRight(0);
 	MotorLeft(0);
+
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-	send_stop_byte();
-	avilable_stop_byte();
-	delay(500);
-		
+//	Serial.println(avilable_stop_byte(), HEX);
 
 	//black_line(P, I, D);
 	//Serial.println(mode);
