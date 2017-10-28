@@ -29,7 +29,8 @@ void setup() {
 	MotorRight(0);
 	MotorLeft(0);
 	servoBack.attach(10);
-	servoBack.write(0);
+	servoBack.write(50);
+//	servoBack.write(150);//סבנמס ראיבû
 	while (1) {
 		if (digitalRead(BUT1) == 0) {
 			mode = 1;
@@ -45,7 +46,10 @@ void setup() {
 
 // the loop function runs over and over again until power down or reset
 void loop() {
+
+		
+
 	//black_line(P, I, D);
 	//Serial.println(mode);
-	Adps_Debug();
+	//Adps_Debug();
 }
