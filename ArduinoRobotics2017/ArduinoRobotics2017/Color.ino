@@ -42,7 +42,7 @@ int Adps_Debug() {
 			return  1;
 
 		}
-		if (cR > 350 & cG < 300 & cB < 420) {//красный
+		if (cR > 300 & cG < 300 & cB < 420) {///красный
 											 Serial.println("RED");
 			return  2;
 		}
@@ -79,7 +79,7 @@ int Adps_Color() {
 				return  1;
 				
 			}
-			if (cR > 350 & cG < 300 & cB < 420) {//красный
+			if (cR > 300 & cG < 300 & cB < 420) {//красный
 				return  2;
 			}
 			if (cR < 400 & cG > 450 & cB > 400 & cB < 700) {//зеленый

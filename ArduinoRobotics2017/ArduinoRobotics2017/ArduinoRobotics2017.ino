@@ -40,8 +40,8 @@ void setup() {
 		/*Serial.print("LLINESEN = ");
 		Serial.print(analogRead(LLINESEN));
 		Serial.print("\t RLINESEN = ");
-		Serial.println(analogRead(RLINESEN));
-		Adps_Debug();*/
+		Serial.println(analogRead(RLINESEN));*/
+		Adps_Debug();
 		if (digitalRead(BUT1) == 0) {
 			mode = 1;
 			break;
@@ -80,10 +80,10 @@ void setup() {
 		MotorRight(255);
 		MotorLeft(255);
 	}
-////	servoBack.write(150);//סבנמס ראיבû
-//	delay(400);
-//	servoBack.write(150);//סבנמס ראיבû
-//	delay(100);
+
+	delay(70);
+	servoBack.write(160);//סבנמס ראיבû
+	delay(500);
 	MotorRight(0);
 	MotorLeft(0);
 
