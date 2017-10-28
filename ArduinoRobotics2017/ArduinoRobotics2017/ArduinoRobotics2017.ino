@@ -50,17 +50,18 @@ void setup() {
 			break;
 		}
    }
-	while (Adps_Color() != 4)//синий
-	{
-		black_line(P, I, D);
-	//	Serial.println(Adps_Color());
-	}
-	Serial.println(Adps_Color());
-	while (Adps_Color() != 2)//красный
-	{
-		MotorRight(255);
-		MotorLeft(255);
-	}
+	//while (Adps_Color() != 4)//синий
+	//{
+	//	black_line(P, I, D);
+	////	Serial.println(Adps_Color());
+	//}
+	//Serial.println(Adps_Color());
+	//while (Adps_Color() != 2)//красный
+	//{
+	//	MotorRight(255);
+	//	MotorLeft(255);
+	//}
+	servoBack.write(150);//сброс шайбы
 	MotorRight(0);
 	MotorLeft(0);
 
