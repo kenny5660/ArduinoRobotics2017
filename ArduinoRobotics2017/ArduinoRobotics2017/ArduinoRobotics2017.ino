@@ -13,14 +13,16 @@
 #define BUT1 A1
 #define BUT2 A0
 // the setup function runs once when you press reset or power the board
-#define P   0.25 
+#define P   0.35 
 #define I 0     
-#define D 1
+#define D 2
+int  v = 255;
 Servo servoBack;
+unsigned long lastMilis = 0;
 int mode = 0;
 void setup() {
 	Serial.begin(9600);
-
+	millis();
 	pinMode(13, OUTPUT);
 	pinMode(LLINESEN, INPUT);
 	pinMode(RLINESEN, INPUT);
@@ -35,11 +37,11 @@ void setup() {
 	servoBack.write(50);
 //	servoBack.write(150);//סבנמס ראיבû
 	while (1) {
-	/*	Serial.print("LLINESEN = ");
+		/*Serial.print("LLINESEN = ");
 		Serial.print(analogRead(LLINESEN));
 		Serial.print("\t RLINESEN = ");
-		Serial.println(analogRead(RLINESEN));*/
-	//	Adps_Debug();
+		Serial.println(analogRead(RLINESEN));
+		Adps_Debug();*/
 		if (digitalRead(BUT1) == 0) {
 			mode = 1;
 			break;
@@ -50,18 +52,38 @@ void setup() {
 			break;
 		}
    }
-	//while (Adps_Color() != 4)//סטםטי
-	//{
-	//	black_line(P, I, D);
-	////	Serial.println(Adps_Color());
-	//}
+//	servoBack.write(150);//סבנמס ראיבû
+//	return;
+	lastMilis = millis();
+	//while (Adps_Color() != 3)//חוכוםûי
+	while (true)
+	{
+		black_line(P, I, D);
+		if ((millis() - lastMilis)>7400)
+		{
+			break;
+		}
+	//	Serial.println(Adps_Color());
+	}
+	//Serial.println(millis()-lastMilis);
 	//Serial.println(Adps_Color());
-	//while (Adps_Color() != 2)//ךנאסםûי
-	//{
-	//	MotorRight(255);
-	//	MotorLeft(255);
-	//}
-	servoBack.write(150);//סבנמס ראיבû
+	MotorRight(245);
+	MotorLeft(255);
+	delay(1400);
+	MotorRight(0);
+	MotorLeft(0);
+	MotorRight(190);
+	MotorLeft(190);
+	delay(500);
+	while (Adps_Color() != 2)//ךנאסםûי
+	{
+		MotorRight(255);
+		MotorLeft(255);
+	}
+////	servoBack.write(150);//סבנמס ראיבû
+//	delay(400);
+//	servoBack.write(150);//סבנמס ראיבû
+//	delay(100);
 	MotorRight(0);
 	MotorLeft(0);
 

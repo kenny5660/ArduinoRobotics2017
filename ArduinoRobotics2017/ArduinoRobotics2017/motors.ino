@@ -7,7 +7,7 @@
 int Lsen = 0;
 int Rsen = 0;
 int u, uOld, er, erOld = 0;
-int  v = 255;
+
 void MotorInit() {
 	pinMode(Rpwm, OUTPUT);
 	pinMode(Lpwm, OUTPUT);

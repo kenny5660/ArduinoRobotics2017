@@ -46,11 +46,11 @@ int Adps_Debug() {
 											 Serial.println("RED");
 			return  2;
 		}
-		if (cR < 380 & cG > 500 & cB < 700) {//зеленый
+		if (cR < 400 & cG > 450 & cB > 400 & cB < 700) {//зеленый
 											 Serial.println("GREEN");
 			return  3;
 		}
-		if (ambient_light<9000 & cR < 250 & cG < 300 & cB >400) {//синий
+		if (ambient_light<900 & cR < 250 & cG < 300 & cB >400) {//синий
 											Serial.println("BLUE");
 			return  4;
 		}
@@ -82,10 +82,10 @@ int Adps_Color() {
 			if (cR > 350 & cG < 300 & cB < 420) {//красный
 				return  2;
 			}
-			if (cR < 380 & cG > 500 & cB < 700) {//зеленый
+			if (cR < 400 & cG > 450 & cB > 400 & cB < 700) {//зеленый
 				return  3;
 			}
-			if (ambient_light<9000 & cR < 250 & cG < 300 & cB >400) {//синий
+			if (ambient_light<900 & cR < 250 & cG < 300 & cB >400) {//синий
 				return  4;
 			}
 			if (ambient_light>1800 & cR > 500 & cG > 700 & cB > 1000) {//белый
